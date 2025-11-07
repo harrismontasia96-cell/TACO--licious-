@@ -13,7 +13,7 @@ public class Topping {
     }
 
     public String getName() { return name; } //using get to retrieve a value
-    public boolean isPremium() { return premium; }
+    public boolean isPremium() { return premium; } //using is to check if users input is a premium item
     public double getPrice() { return price; }
 }
 
