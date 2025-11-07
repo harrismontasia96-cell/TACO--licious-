@@ -13,19 +13,19 @@ public class Drink implements MenuItem {
         this.size = size;//keyword This to refer to the current (Object)
         this.flavor = flavor;
     }
-    @Override
-    public double getPrice() {
-        switch(size) {
-            case SMALL: return 1.5;
-            case MEDIUM: return 2.0;
+    @Override// an METHOD that has override-equivalent to that of any public method declared in Object.
+    public double getPrice() {//getter for price of drink
+        switch(size) {//switch statement to test against multiple possible values
+            case SMALL: return 1.5;// Case - a possible match for (Value) being tested
+            case MEDIUM: return 2.0;//key word return to call on - the return of said (value)
             case LARGE: return 2.5;
         }
         return 0;
     }
 
-    @Override
-    public String getDescription() {
-        return size + " " + flavor + " drink";
+    @Override// an METHOD that has override-equivalent to that of any public method declared in Object.
+    public String getDescription() {//getter for description of drink option
+        return size + " " + flavor + " drink";//return size and flavor of drink
     }
 }
 

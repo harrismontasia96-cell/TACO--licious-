@@ -24,7 +24,7 @@ public class Taco implements MenuItem{
     @Override// an METHOD that has override-equivalent to that of any public method declared in Object.
     public double getPrice() {
         double price = 0;
-        switch(size) {//our switch statement to test against multiple possible values
+        switch(size) {//my switch statement to test against multiple possible values
             case SINGLE: price += 3.0; break; // Case - a possible match for (Value) being tested
             case THREE_TACO_PLATE: price += 8.0; break;  //Break stops the switch statement
             case BURRITO: price += 7.0; break;           //once a match is found and to prevent Fall-Through
