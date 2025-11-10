@@ -234,28 +234,7 @@ public class TacoBuilder {
         System.out.println("Would you like your taco deep fried? (y/n)");
         return scanner.nextLine().equalsIgnoreCase("y");
     }
-    public static Taco customizeExistingTaco(Taco taco) {
-        System.out.println("Would you like to change the shell? Current: " + taco.getShell() + " (y/n)");
-        if (scanner.nextLine().equalsIgnoreCase("y")) {
-            System.out.println("Enter new shell type:");
-            taco.setShell(scanner.nextLine());
-        }
 
-        System.out.println("Would you like to add/remove toppings? (y/n)");
-        if (scanner.nextLine().equalsIgnoreCase("y")) {
-            System.out.println("Current toppings: " + taco.getToppings());
-            System.out.println("Add a topping (or type 'done'):");
-            String topping;
-            while (!(topping = scanner.nextLine()).equalsIgnoreCase("done")) {
-                taco.addTopping(topping);
-                System.out.println("Added " + topping);
-            }
-        }
-
-        System.out.println("Deep fry this taco? (y/n)");
-        taco.setDeepFried(scanner.nextLine().equalsIgnoreCase("y"));
-
-        return taco;
     }
-}
+
 

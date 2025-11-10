@@ -23,6 +23,12 @@ public class Taco implements MenuItem {
                           this.deepFried = deepFried;
 
                       }
+                      public Taco(Taco other) {
+                          this.shell = other.shell;
+                          this.size = other.size;
+                          this.deepFried = other.deepFried;
+                          this.toppings = new ArrayList<>(other.toppings);
+                      }
 
                       public Taco copy() {
                           List<Topping> copiedToppings = new ArrayList<>();

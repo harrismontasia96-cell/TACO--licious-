@@ -13,9 +13,14 @@ public class Order {
     public long getTacoCount() {
         return items.stream().filter(item -> item instanceof Taco).count();
     }
-
-    public long getNonTacoCount() {
-        return items.stream().filter(item -> !(item instanceof Taco)).count();
+    public Taco getLastTaco() {
+        Taco last = null;
+        for (MenuItem item : items) {
+            if (item instanceof Taco) {
+                last = (Taco) item;
+            }
+        }
+        return last;
     }
 
     public double calculateTotal() {
@@ -29,5 +34,6 @@ public class Order {
         }
         System.out.println("Total: $" + calculateTotal());
     }
+
 }
 
