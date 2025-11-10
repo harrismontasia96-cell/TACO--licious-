@@ -10,12 +10,20 @@ public class Order {
     public void removeItem(MenuItem item) { items.remove(item); }
     public List<MenuItem> getItems() { return items; }
 
+    public long getTacoCount() {
+        return items.stream().filter(item -> item instanceof Taco).count();
+    }
+
+    public long getNonTacoCount() {
+        return items.stream().filter(item -> !(item instanceof Taco)).count();
+    }
+
     public double calculateTotal() {
         return items.stream().mapToDouble(MenuItem::getPrice).sum();
     }
 
     public void displayOrder() {
-        System.out.println("=== Your Order ===");
+        System.out.println("=== Your Tacolicious Order ===");
         for(MenuItem item : items) {
             System.out.println(item.getDescription() + " - $" + item.getPrice());
         }
