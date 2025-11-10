@@ -82,47 +82,46 @@ public class TacoApp {
             System.out.println("1) Add Taco");
             System.out.println("2) Add Drink");
             System.out.println("3) Add Chips & Salsa");
-            System.out.println("4) Checkout");
-            System.out.println("5) Customize Another Taco (copy previous)");
+            System.out.println("4) Customize Another Taco (copy previous)");
+            System.out.println("5) Checkout");
             System.out.println("0) Cancel Order");
             String choice = scanner.nextLine();
+
             switch (choice) {
                 case "1":
                     Taco taco = TacoBuilder.buildTaco();
                     order.addItem(taco);
                     break;
+
                 case "2":
                     order.addItem(addDrink());
                     break;
+
                 case "3":
                     order.addItem(addChipsAndSalsa());
                     break;
+
                 case "4":
                     if (order.getLastTaco() == null) {
                         System.out.println("No previous taco to copy! Please add one first.");
                     } else {
-                        Taco copied = new Taco(order.getLastTaco()); // copy constructor
+                        Taco copied = new Taco(order.getLastTaco()); //  now valid
                         System.out.println("Copied previous taco. You can now tweak it.");
                         Taco customized = TacoBuilder.customizeExistingTaco(copied);
                         order.addItem(customized);
                     }
                     break;
-                case "5":
-                    order.displayOrder();
-                    System.out.println("Confirm order? (y/n)");
-                    if (order.getTacoCount() == 0 && order.getNonTacoCount() == 0) {
-                        System.out.println("\n You must order at least one taco, drink, or chips & salsa to check out!");
-                        break;
-                    }
 
-                    if (order.getTacoCount() == 0 && order.getNonTacoCount() > 0) {
-                        System.out.println("\n You have no tacos, but you ordered drinks or chips — allowed.");
+                case "5":
+                    if (order.getTacoCount() == 0 && order.getNonTacoCount() == 0) {
+                        System.out.println("\nYou must order at least one taco, drink, or chips & salsa to check out!");
+                        break;
                     }
                     order.displayOrder();
                     System.out.println("Confirm order? (y/n)");
                     if (scanner.nextLine().equalsIgnoreCase("y")) {
                         Receipt.save(order);
-                        System.out.println(" Order complete! Returning to Home Screen.");
+                        System.out.println("Order complete! Returning to Home Screen.");
                         ordering = false;
                     } else {
                         System.out.println("Checkout canceled. You may continue ordering.");
@@ -130,17 +129,16 @@ public class TacoApp {
                     break;
 
                 case "0":
-                    System.out.println("Order canceled Returning to Home Screen.");
+                    System.out.println("Order canceled. Returning to Home Screen.");
                     ordering = false;
                     break;
-                default:
-                    System.out.println("Invalid option Try again.");
 
+                default:
+                    System.out.println("Invalid option. Try again.");
             }
         }
     }
 }
-
 
 
 
