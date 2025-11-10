@@ -8,7 +8,7 @@ public class TacoBuilder {
     private static Scanner scanner = new Scanner(System.in);
 
     public static Taco buildTaco() {
-        System.out.println("=== Create Your Taco ===");
+        System.out.println("=== Create Your Tacolicious Taco ===");
 
         // Step 1: Select size
         Taco.Size size = selectSize();
@@ -19,15 +19,76 @@ public class TacoBuilder {
         // Step 3: Add toppings
         List<Topping> toppings = selectToppings();
 
+        toppings.addAll(selectSauces());
+
         // Step 4: Deep fried?
         boolean deepFried = askDeepFried();
 
         Taco taco = new Taco(size, shell, toppings, deepFried);
-
         System.out.println("\n Tacolicious Taco added: " + taco.getDescription());
-        System.out.println("💲 Price: $" + taco.getPrice());
+        System.out.println(" Price: $" + taco.getPrice());
         return taco;
     }
+    public static Taco customizeExistingTaco(Taco taco) {
+        System.out.println("Customizing your copied taco...");
+        System.out.println("Would you like to change the shell? Current: " + taco.getShell() + " (y/n)");
+        if (scanner.nextLine().equalsIgnoreCase("y")) {
+            taco.setShell(selectShell());
+        }
+
+        System.out.println("Would you like to modify toppings? (y/n)");
+        if (scanner.nextLine().equalsIgnoreCase("y")) {
+            taco.getToppings().clear();
+            taco.getToppings().addAll(selectToppings());
+            taco.getToppings().addAll(selectSauces());
+        }
+
+        System.out.println("Deep fry this taco? (y/n)");
+        taco.setDeepFried(scanner.nextLine().equalsIgnoreCase("y"));
+
+        System.out.println("Customized taco ready!");
+        return taco;
+    }
+
+
+
+    private static List<Topping> selectSauces() {
+        List<Topping> sauces = new ArrayList<>();
+        boolean addingSauces = true;
+
+        while (addingSauces) {
+            System.out.println("\nChoose your sauces:");
+            System.out.println("1) Mild Salsa");
+            System.out.println("2) Spicy Salsa");
+            System.out.println("3) Chipotle Cream");
+            System.out.println("4) Verde Sauce");
+            System.out.println("5) None / Done adding sauces");
+
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    sauces.add(new Topping("Mild Salsa", false, 0.0));
+                    break;
+                case "2":
+                    sauces.add(new Topping("Spicy Salsa", false, 0.0));
+                    break;
+                case "3":
+                    sauces.add(new Topping("Chipotle Cream", true, 0.5));
+                    break;
+                case "4":
+                    sauces.add(new Topping("Verde Sauce", false, 0.0));
+                    break;
+                case "5":
+                    addingSauces = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+        return sauces;
+    }
+
 
     private static Taco.Size selectSize() {
         System.out.println("Select Tacolicious size:");
@@ -36,9 +97,12 @@ public class TacoBuilder {
         System.out.println("3) BurritoLicious");
         String choice = scanner.nextLine();
         switch (choice) {
-            case "1": return Taco.Size.SINGLE;
-            case "2": return Taco.Size.THREE_TACO_PLATE;
-            case "3": return Taco.Size.BURRITO;
+            case "1":
+                return Taco.Size.SINGLE;
+            case "2":
+                return Taco.Size.THREE_TACO_PLATE;
+            case "3":
+                return Taco.Size.BURRITO;
             default:
                 System.out.println("Invalid choice. Defaulting to Single Taco.");
                 return Taco.Size.SINGLE;
@@ -53,15 +117,20 @@ public class TacoBuilder {
         System.out.println("4) Bowl");
         String choice = scanner.nextLine();
         switch (choice) {
-            case "1": return Taco.Shell.CORN;
-            case "2": return Taco.Shell.FLOUR;
-            case "3": return Taco.Shell.HARD_SHELL;
-            case "4": return Taco.Shell.BOWL;
+            case "1":
+                return Taco.Shell.CORN;
+            case "2":
+                return Taco.Shell.FLOUR;
+            case "3":
+                return Taco.Shell.HARD_SHELL;
+            case "4":
+                return Taco.Shell.BOWL;
             default:
                 System.out.println("Invalid choice. Defaulting to Flour.");
                 return Taco.Shell.FLOUR;
         }
     }
+
 
     private static List<Topping> selectToppings() {
         List<Topping> toppings = new ArrayList<>();
@@ -97,17 +166,22 @@ public class TacoBuilder {
 
     private static Topping selectProtein() {
         System.out.println("Select protein:");
-        System.out.println("1) Chicken");
-        System.out.println("2) Steak");
-        System.out.println("3) Pork");
-        System.out.println("4) Shrimp");
+        System.out.println("1) Pollo");
+        System.out.println("2) Carne Asada");
+        System.out.println("3) Carne de Cerdo");
+        System.out.println("4) Camerones");
         String choice = scanner.nextLine();
         switch (choice) {
-            case "1": return new Topping("Chicken", true, 2.0);
-            case "2": return new Topping("Steak", true, 2.5);
-            case "3": return new Topping("Pork", true, 2.0);
-            case "4": return new Topping("Shrimp", true, 3.0);
-            default: return new Topping("Chicken", true, 2.0);
+            case "1":
+                return new Topping("Pollo", true, 2.0);
+            case "2":
+                return new Topping("Carne Asada", true, 2.5);
+            case "3":
+                return new Topping("Carne de Cerdo", true, 2.0);
+            case "4":
+                return new Topping("Camerones", true, 3.0);
+            default:
+                return new Topping("Pollo", true, 2.0);
         }
     }
 
@@ -119,11 +193,16 @@ public class TacoBuilder {
         System.out.println("4) Vegan Cheese");
         String choice = scanner.nextLine();
         switch (choice) {
-            case "1": return new Topping("Cheddar", true, 1.0);
-            case "2": return new Topping("Queso Fresco", true, 1.5);
-            case "3": return new Topping("Mozzarella", true, 1.0);
-            case "4": return new Topping("Vegan Cheese", true, 1.5);
-            default: return new Topping("Cheddar", true, 1.0);
+            case "1":
+                return new Topping("Cheddar", true, 1.0);
+            case "2":
+                return new Topping("Queso Fresco", true, 1.5);
+            case "3":
+                return new Topping("Mozzarella", true, 1.0);
+            case "4":
+                return new Topping("Vegan Cheese", true, 1.5);
+            default:
+                return new Topping("Cheddar", true, 1.0);
         }
     }
 
@@ -136,18 +215,47 @@ public class TacoBuilder {
         System.out.println("5) Guacamole");
         String choice = scanner.nextLine();
         switch (choice) {
-            case "1": return new Topping("Lettuce", false, 0.0);
-            case "2": return new Topping("Tomato", false, 0.0);
-            case "3": return new Topping("Onion", false, 0.0);
-            case "4": return new Topping("Jalapenos", false, 0.0);
-            case "5": return new Topping("Guacamole", false, 0.0);
-            default: return new Topping("Lettuce", false, 0.0);
+            case "1":
+                return new Topping("Lettuce", false, 0.0);
+            case "2":
+                return new Topping("Tomato", false, 0.0);
+            case "3":
+                return new Topping("Onion", false, 0.0);
+            case "4":
+                return new Topping("Jalapenos", false, 0.0);
+            case "5":
+                return new Topping("Guacamole", false, 0.0);
+            default:
+                return new Topping("Lettuce", false, 0.0);
         }
     }
 
     private static boolean askDeepFried() {
         System.out.println("Would you like your taco deep fried? (y/n)");
         return scanner.nextLine().equalsIgnoreCase("y");
+    }
+    public static Taco customizeExistingTaco(Taco taco) {
+        System.out.println("Would you like to change the shell? Current: " + taco.getShell() + " (y/n)");
+        if (scanner.nextLine().equalsIgnoreCase("y")) {
+            System.out.println("Enter new shell type:");
+            taco.setShell(scanner.nextLine());
+        }
+
+        System.out.println("Would you like to add/remove toppings? (y/n)");
+        if (scanner.nextLine().equalsIgnoreCase("y")) {
+            System.out.println("Current toppings: " + taco.getToppings());
+            System.out.println("Add a topping (or type 'done'):");
+            String topping;
+            while (!(topping = scanner.nextLine()).equalsIgnoreCase("done")) {
+                taco.addTopping(topping);
+                System.out.println("Added " + topping);
+            }
+        }
+
+        System.out.println("Deep fry this taco? (y/n)");
+        taco.setDeepFried(scanner.nextLine().equalsIgnoreCase("y"));
+
+        return taco;
     }
 }
 
