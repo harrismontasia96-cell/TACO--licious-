@@ -249,3 +249,63 @@ Checkout to save your order
 //*Order manages a collection of MenuItems and tracks taco/non-taco items.
 
 //*Receipt handles saving/printing completed orders.
+
+ ## Class Birthday ##
+
+Represents a birthday party booking within the Taco App’s extended features.
+This class adds an interactive experience that lets users plan a taco-themed birthday celebration directly through the console interface.
+
+Key Responsibilities:
+
+Collects party details from the user, including:
+
+Date and time of the event
+
+Name to be displayed on the personalized border sign
+
+Piñata animal design and color selection
+
+Example Method:
+
+bookBirthdayParty()
+Prompts the user for event details and customizations, returning a formatted summary of the birthday order.
+
+Example Implementation:
+
+public void bookBirthdayParty() {
+System.out.print("Enter the date of the birthday party: ");
+String date = scanner.nextLine();
+
+    System.out.print("Enter the time of the birthday party: ");
+    String time = scanner.nextLine();
+    
+    System.out.print("Enter the name to display on the birthday sign: ");
+    String name = scanner.nextLine();
+    
+    System.out.print("Choose a piñata animal design: ");
+    String animal = scanner.nextLine();
+    
+    System.out.print("Choose a color for the piñata: ");
+    String color = scanner.nextLine();
+    
+    System.out.println("\n🎉 Birthday Party Booked!");
+    System.out.println("Date: " + date);
+    System.out.println("Time: " + time);
+    System.out.println("Sign Name: " + name);
+    System.out.println("Piñata: " + color + " " + animal);
+}
+
+* Integration with TacoApp:
+
+The Birthday class is accessible from the main TacoApp menu, giving users an additional option to plan a party alongside their food order.
+It enhances the user experience by connecting custom taco catering packages (Basic, Deluxe, or Premium) with birthday-specific decorations and activities.
+
+* Java Concepts Demonstrated:
+
+Encapsulation: Each party booking is self-contained, managed through the Birthday class.
+
+User Input Handling: Uses Scanner to collect user input and dynamically build a summary.
+
+String Concatenation: Outputs clear, formatted party details.
+
+Method Invocation: Integrates seamlessly into the TacoApp’s existing flow — called directly when the user selects the birthday booking option.

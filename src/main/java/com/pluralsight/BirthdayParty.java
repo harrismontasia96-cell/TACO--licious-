@@ -15,7 +15,6 @@ public class BirthdayParty implements MenuItem {
     private int guestCount;
     private double price;
 
-    // Expanded constructor
     public BirthdayParty(String bannerName, LocalDateTime partyDateTime,
                          String pinataAnimal, String pinataColor,
                          String theme, String cateringPackage,
@@ -53,27 +52,67 @@ public class BirthdayParty implements MenuItem {
         String theme = scanner.nextLine();
 
         System.out.print("Choose a catering package (Basic, Deluxe, or Premium): ");
-        String catering = scanner.nextLine();
+        String catering = scanner.nextLine().trim();
 
         System.out.print("Enter the number of guests attending: ");
         int guests = Integer.parseInt(scanner.nextLine());
 
-        //  calculate price based on guest count
-        double price = 49.99 + (guests * 5);
+        // 💰 Calculate price based on package and guest count
+        double basePrice = 49.99;
+        double perGuest = 0.0;
+
+        switch (catering.toLowerCase()) {
+            case "basic":
+                perGuest = 9.99; // Single taco, chips/salsa, small drink, candy bag
+                break;
+            case "deluxe":
+                perGuest = 14.99; // Two tacos, chips/salsa, medium drink, candy bag
+                break;
+            case "premium":
+                perGuest = 21.99; // Three tacos, rice/beans, large drink, cactus
+                break;
+            default:
+                System.out.println("⚠ Invalid catering option. Defaulting to Basic.");
+                catering = "Basic";
+                perGuest = 9.99;
+        }
+
+        double totalPrice = basePrice + (perGuest * guests);
 
         System.out.println("🎂 Birthday party booked successfully!");
-        return new BirthdayParty(name, dateTime, animal, color, theme, catering, guests, price);
+        return new BirthdayParty(name, dateTime, animal, color, theme, catering, guests, totalPrice);
     }
 
     @Override
     public String getDescription() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy 'at' hh:mm a");
-        return "🎉 Birthday Party for " + bannerName +
+
+        String cateringDetails;
+
+        switch (cateringPackage.toLowerCase()) {
+            case "basic":
+                cateringDetails = "🌮 Single taco serving, chips & salsa, one small drink, and a Mexican candy bag.";
+                break;
+            case "deluxe":
+                cateringDetails = "🌮 Two taco servings, chips & salsa, one medium drink, and a Mexican candy bag.";
+                break;
+            case "premium":
+                cateringDetails = "🌮 Three taco servings, rice & beans, bag of chips with salsa, one large drink, a Mexican candy bag, and a take-home miniature cactus plant.";
+                break;
+            default:
+                cateringDetails = "Custom catering details not available.";
+                break;
+        }
+
+
+        return "\n🎉 Birthday Party for: " + bannerName +
                 "\n📅 Date: " + partyDateTime.format(formatter) +
                 "\n🎈 Theme: " + theme +
-                "\n🍽 Catering: " + cateringPackage +
-                "\n👥 Guests: " + guestCount +
-                "\n🪅 Piñata: " + pinataColor + " " + pinataAnimal;
+                "\n🪅 Piñata: " + pinataColor + " " + pinataAnimal +
+                "\n🍽 Catering Package: " + cateringPackage +
+                "\n👥 Guest Count: " + guestCount +
+                "\n" + cateringDetails +
+                "\n💰 Total Price: $" + String.format("%.2f", price);
     }
 
     @Override
