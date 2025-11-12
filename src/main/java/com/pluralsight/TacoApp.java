@@ -73,6 +73,11 @@ public class TacoApp {
         System.out.println(" Added " + chips.getDescription());
         return chips;
     }
+    public static void addBirthdayParty(Order order) {
+        BirthdayParty party = BirthdayParty.createFromUserInput();
+        order.addItem(party);
+        System.out.println("🎉 Your birthday party package has been added to the order!");
+    }
 
 
     private static void handleOrder(Order order) {
@@ -84,6 +89,7 @@ public class TacoApp {
             System.out.println("3) Add Chips & Salsa");
             System.out.println("4) Customize Another Taco (copy previous)");
             System.out.println("5) Checkout");
+            System.out.println("6) Book a Birthday Party 🎂");
             System.out.println("0) Cancel Order");
             String choice = scanner.nextLine();
 
@@ -127,6 +133,9 @@ public class TacoApp {
                         System.out.println("Checkout canceled. You may continue ordering.");
                     }
                     break;
+                case "6":
+                    addBirthdayParty(order);
+            break;
 
                 case "0":
                     System.out.println("Order canceled. Returning to Home Screen.");

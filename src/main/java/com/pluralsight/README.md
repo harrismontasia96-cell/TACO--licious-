@@ -4,7 +4,7 @@ Each section includes definitions, explanations, and examples drawn from the Tac
 
 ## Table of Contents
 * My Key Classes in My Taco App Include
-Taco
+Class Taco
 
 Represents a single taco order with:
 
@@ -22,7 +22,7 @@ getPrice(): Calculates the price based on size, toppings, and deep fry option.
 
 getDescription(): Generates a formatted description of the taco.
 
-* Topping
+* Class Topping
 
 Represents a single topping or sauce with:
 
@@ -40,7 +40,7 @@ Represents a full customer order. Contains:
 
 List of MenuItem objects (Taco, Drink, ChipsAndSalsa)
 
-Methods:
+# Methods:
 
 addItem(), removeItem()
 
@@ -52,17 +52,17 @@ displayOrder()
 
 getLastTaco(): Returns the last taco added to allow copying/customization
 
-* TacoBuilder
+* Class TacoBuilder
 
 Handles taco creation and customization:
 
 buildTaco(): Guides user through selecting size, shell, toppings, sauces, and deep fry.
 
-customizeExistingTaco(Taco taco): Allows copying a previous taco and modifying it.
+customizeExistingTaco(Taco Taco): Allows copying a previous taco and modifying it.
 
 Private helper methods for selecting toppings, sauces, shell, and size.
 
-* Drink
+*CLass Drink
 
 Represents a beverage:
 
@@ -72,7 +72,7 @@ flavor
 
 Implements MenuItem with getPrice() and getDescription()
 
-* ChipsAndSalsa
+* class ChipsAndSalsa
 
 Represents a chips and salsa order:
 
@@ -80,11 +80,11 @@ salsaType
 
 Implements MenuItem
 
-* Receipt
+* Class Receipt
 
 Handles saving or printing the final order.
 
-* User Interaction
+# User Interaction
 
 The main menu is in TacoApp
 
@@ -239,3 +239,13 @@ Follow the console prompts to add tacos, drinks, or chips & salsa
 Copy and customize previous tacos if desired
 
 Checkout to save your order
+
+# Explanation:
+
+//*MenuItem is an interface that Taco, Drink, and ChipsAndSalsa implement.
+
+//*TacoBuilder handles building or customizing tacos.
+
+//*Order manages a collection of MenuItems and tracks taco/non-taco items.
+
+//*Receipt handles saving/printing completed orders.
