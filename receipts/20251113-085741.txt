@@ -1,0 +1,12 @@
+SINGLE taco with CORN shell
+ Toppings: Camerones, Queso Fresco, Lettuce
+Sauces: Chipotle Cream, Verde Sauce
+Deep Fried
+ - $9.0
+LARGE  taco loco strawberry drink - $2.5
+Chips & Hot salsa - $3.0
+THREE_TACO_PLATE taco with HARD_SHELL shell
+ Toppings: Pollo, Cheddar, Lettuce
+Sauces: Mild Salsa
+ - $11.0
+Total: $25.5

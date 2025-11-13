@@ -4,6 +4,7 @@ Each section includes definitions, explanations, and examples drawn from the Tac
 
 ## Table of Contents
 * My Key Classes in My Taco App Include
+
 Class Taco
 
 Represents a single taco order with:
@@ -30,11 +31,9 @@ name
 
 isPremium (boolean)
 
-price
+price- Used to calculate additional costs for premium items.
 
-Used to calculate additional costs for premium items.
-
-* Order
+* Class Order
 
 Represents a full customer order. Contains:
 
@@ -105,7 +104,7 @@ Checkout and save order
 
 Used to repeat a block of code a specific number of times.
 
-Example in Taco App:
+Example in Taco App Class:
 Iterating over toppings in the Taco class to calculate price and categorize them:
 
 for(Topping t : toppings) {
@@ -118,7 +117,7 @@ switch allows branching logic based on variable values.
 case defines each branch, and break prevents fall-through.
 
 Example in Taco App:
-Selecting taco size in TacoBuilder:
+Selecting taco size in TacoBuilder Class:
 
 switch (choice) {
 case "1": return Taco.Size.SINGLE;
@@ -132,7 +131,7 @@ default: return Taco.Size.SINGLE;
 A constructor is a special method used to initialize new objects.
 It has the same name as the class and no return type.
 
-Example in Taco App:
+Example in Taco App Class:
 Taco constructor:
 
 public Taco(Size size, Shell shell, List<Topping> toppings, boolean deepFried) {
@@ -208,7 +207,7 @@ public Taco.Shell getShell() { return shell; }
 
 
 
-// is Convention
+// is Conventions
 
 Boolean methods often start with is to indicate a true/false state.
 
@@ -242,20 +241,21 @@ Checkout to save your order
 
 # Explanation:
 
-//*MenuItem is an interface that Taco, Drink, and ChipsAndSalsa implement.
+//*MenuItemCLASS is an interface that Taco, Drink, and ChipsAndSalsa implement.
 
-//*TacoBuilder handles building or customizing tacos.
+//*TacoBuilderCLASS handles building or customizing tacos.
 
-//*Order manages a collection of MenuItems and tracks taco/non-taco items.
+//*OrderCLASS manages a collection of MenuItems and tracks taco/non-taco items.
 
-//*Receipt handles saving/printing completed orders.
+//*ReceiptCLASS handles saving/printing completed orders.
 
  ## Class Birthday ##
 
 Represents a birthday party booking within the Taco App’s extended features.
-This class adds an interactive experience that lets users plan a taco-themed birthday celebration directly through the console interface.
+This class adds an interactive experience that lets users plan a taco-themed birthday celebration
+directly through the console interface.
 
-Key Responsibilities:
+# Key Responsibilities:
 
 Collects party details from the user, including:
 
@@ -297,8 +297,10 @@ String date = scanner.nextLine();
 
 * Integration with TacoApp:
 
-The Birthday class is accessible from the main TacoApp menu, giving users an additional option to plan a party alongside their food order.
-It enhances the user experience by connecting custom taco catering packages (Basic, Deluxe, or Premium) with birthday-specific decorations and activities.
+The Birthday class is accessible from the main TacoApp menu, giving users
+an additional option to plan a party alongside their food order.
+It enhances the user experience by connecting custom taco catering packages
+(Basic, Deluxe, or Premium) with birthday-specific decorations and activities.
 
 * Java Concepts Demonstrated:
 
@@ -308,4 +310,5 @@ User Input Handling: Uses Scanner to collect user input and dynamically build a 
 
 String Concatenation: Outputs clear, formatted party details.
 
-Method Invocation: Integrates seamlessly into the TacoApp’s existing flow — called directly when the user selects the birthday booking option.
+Method Invocation: Integrates seamlessly into the TacoApp’s existing flow
+— called directly when the user selects the birthday booking option.
