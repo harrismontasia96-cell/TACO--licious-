@@ -1,5 +1,6 @@
 # Tacolicious Java Project
-This README summarizes key Java concepts, syntax, and object-oriented programming (OOP) principles used in the Tacolicious Java Project.
+This README summarizes key Java concepts, syntax, and object-oriented programming (OOP)
+principles used in the Tacolicious Java Project.
 Each section includes definitions, explanations, and examples drawn from the Taco App codebase.
 
 ## Table of Contents
